@@ -31,7 +31,7 @@ const createTransporter = async () => {
       refreshToken: config.GOOGLE_REFRESH_TOKEN,
     },
   });
-  console.log(transporter);
+
   return transporter;
 };
 

@@ -15,7 +15,6 @@ connectDB();
 const authRouter = require("./routes/auth.routes");
 const userRouter = require("./routes/users.routes");
 
-app.use(cors());
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(helmet());
@@ -23,13 +22,13 @@ app.use(helmet());
 app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
-
+app.options("*", cors());
 app.use(errorHandler);
 
 const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(cors());
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Error: ${err.message}`);
 
