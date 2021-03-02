@@ -24,6 +24,11 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.options("*", cors());
 app.use(errorHandler);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://the-recipe-room.netlify.app/");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
