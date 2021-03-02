@@ -28,10 +28,3 @@ app.use(errorHandler);
 const server = app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(cors());
-process.on("unhandledRejection", (err, promise) => {
-  console.log(`Error: ${err.message}`);
-
-  //close server
-  server.close(() => process.exit(1)); // 1 is exit with failure
-});
